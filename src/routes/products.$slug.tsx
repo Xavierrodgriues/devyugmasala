@@ -116,7 +116,7 @@ function ProductDetail() {
             <Reveal delay={0.2} className="mt-10">
               <h3 className="text-[11px] uppercase tracking-[0.3em] text-charcoal mb-5">Benefits</h3>
               <ul className="space-y-3">
-                {product.benefits.map((b) => (
+                {product.benefits.map((b: string) => (
                   <li key={b} className="flex items-start gap-3 text-sm text-charcoal/70 font-light">
                     <Check size={14} strokeWidth={1.5} className="mt-1 text-clay shrink-0" />
                     {b}
@@ -128,7 +128,7 @@ function ProductDetail() {
             <Reveal delay={0.25} className="mt-8">
               <h3 className="text-[11px] uppercase tracking-[0.3em] text-charcoal mb-5">Features</h3>
               <ul className="space-y-3">
-                {product.features.map((f) => (
+                {product.features.map((f: string) => (
                   <li key={f} className="flex items-start gap-3 text-sm text-charcoal/70 font-light">
                     <Check size={14} strokeWidth={1.5} className="mt-1 text-clay shrink-0" />
                     {f}

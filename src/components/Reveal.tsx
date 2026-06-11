@@ -15,7 +15,7 @@ export function Reveal({
   children: ReactNode;
   delay?: number;
   className?: string;
-  as?: "div" | "section" | "li" | "h2" | "p";
+  as?: "div" | "section" | "li" | "h1" | "h2" | "h3" | "p" | "span";
 }) {
   const MotionTag = motion[as] as typeof motion.div;
   return (
