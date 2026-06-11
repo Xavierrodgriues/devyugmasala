@@ -84,7 +84,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
           "Dehyug Masala crafts heritage Indian spices, blended masalas and seasonings. Pure, single-origin, stone-ground since 1960.",
       },
       { name: "author", content: "Dehyug Masala" },
-      { property: "og:title", content: "Dehyug Masala — Premium Indian Spices" },
+      { property: "og:title", content: "Dehyug Masala — Premium Indian Spices Since 1960" },
       {
         property: "og:description",
         content:
@@ -92,6 +92,12 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: "Dehyug Masala — Premium Indian Spices Since 1960" },
+      { name: "description", content: "Dehyug Spice Canvas is a premium website showcasing Dehyug Masala's spice products with an elegant, modern design." },
+      { property: "og:description", content: "Dehyug Spice Canvas is a premium website showcasing Dehyug Masala's spice products with an elegant, modern design." },
+      { name: "twitter:description", content: "Dehyug Spice Canvas is a premium website showcasing Dehyug Masala's spice products with an elegant, modern design." },
+      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/fd22bd4f-68c6-4e6a-aa46-b49bfa01e0f9/id-preview-13b64dfa--f39d553f-75fe-42d1-b672-098cd44b61e5.lovable.app-1781156389233.png" },
+      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/fd22bd4f-68c6-4e6a-aa46-b49bfa01e0f9/id-preview-13b64dfa--f39d553f-75fe-42d1-b672-098cd44b61e5.lovable.app-1781156389233.png" },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
