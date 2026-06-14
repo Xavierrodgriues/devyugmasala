@@ -80,13 +80,19 @@ function HomePage() {
                     <div className="absolute inset-0 bg-charcoal/10 group-hover:bg-transparent transition-colors duration-500" />
                     <div className="absolute bottom-6 left-6 right-6 flex items-center justify-between text-cream">
                       <span className="text-[10px] uppercase tracking-[0.3em]">0{i + 1}</span>
-                      <span className="text-[10px] uppercase tracking-[0.3em] md:opacity-0 md:group-hover:opacity-100 transition-opacity">
+                      <span className="hidden md:inline text-[10px] uppercase tracking-[0.3em] opacity-0 group-hover:opacity-100 transition-opacity">
                         Explore →
                       </span>
                     </div>
                   </div>
                   <h3 className="font-display text-2xl md:text-3xl mb-2 text-charcoal">{cat.name}</h3>
                   <p className="text-sm text-charcoal/60 font-light leading-relaxed">{cat.description}</p>
+                  <div className="mt-4 md:hidden">
+                    <div className="inline-flex items-center gap-3 text-clay text-[10px] uppercase tracking-[0.25em] font-semibold">
+                      Explore
+                      <span className="w-8 h-px bg-clay" />
+                    </div>
+                  </div>
                 </Link>
               </Reveal>
             ))}
