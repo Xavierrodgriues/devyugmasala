@@ -88,11 +88,29 @@ function ProductDetail() {
               <p className="text-charcoal/70 leading-relaxed font-light">{product.description}</p>
             </Reveal>
 
-            <Reveal delay={0.15} className="mt-10 gap-6 py-6 border-y border-border">
+            <Reveal delay={0.15} className={`mt-10 py-6 border-y border-border ${product.category !== "seasoning" ? "grid grid-cols-2 gap-6" : ""}`}>
               <div>
                 <div className="text-[10px] uppercase tracking-[0.3em] text-charcoal/40 mb-2">Origin</div>
                 <div className="text-sm text-charcoal font-light">{product.origin}</div>
               </div>
+              {product.category !== "seasoning" && (
+                <div>
+                  <div className="text-[10px] uppercase tracking-[0.3em] text-charcoal/40 mb-2">Available Sizes</div>
+                  <div className="flex flex-wrap gap-1.5">
+                    {(product.category === "pure-spices"
+                      ? ["100gm", "200gm", "500gm", "1kg"]
+                      : ["50gm", "100gm"]
+                    ).map((size) => (
+                      <span
+                        key={size}
+                        className="px-2.5 py-1 bg-stone-warm border border-charcoal/5 text-[10px] tracking-wider text-charcoal/70 rounded-md font-semibold"
+                      >
+                        {size}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              )}
             </Reveal>
 
             <Reveal delay={0.2} className="mt-10">
