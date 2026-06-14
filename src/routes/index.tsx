@@ -250,6 +250,63 @@ function HomePage() {
         </div>
       </section>
 
+      {/* Certifications Showcase */}
+      <section className="py-20 border-t border-border/40 bg-cream">
+        <div className="container-luxury">
+          <div className="flex flex-col lg:flex-row justify-between items-center gap-12 lg:gap-16">
+            <Reveal className="max-w-md text-center lg:text-left shrink-0">
+              <span className="text-clay text-eyebrow mb-3 block">Safety & Trust</span>
+              <h3 className="font-display text-3xl md:text-4xl text-charcoal leading-tight">
+                Accredited purity and food safety.
+              </h3>
+              <p className="text-charcoal/60 font-light text-sm mt-4 leading-relaxed">
+                Devyug Masala products are fully compliant with Indian food safety regulations, manufactured under pristine sanitary conditions.
+              </p>
+            </Reveal>
+            
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 w-full max-w-2xl">
+              <Reveal delay={0.1}>
+                <div className="bg-[#FAF6F2] border border-[#2C1E16]/10 rounded-xl p-6 flex flex-col items-center justify-center text-center h-44 shadow-sm hover:border-clay/20 transition-colors">
+                  <div className="w-12 h-12 rounded-full bg-emerald-50 flex items-center justify-center mb-3">
+                    <svg className="w-6 h-6 text-emerald-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+                      <polyline points="22 4 12 14.01 9 11.01" />
+                    </svg>
+                  </div>
+                  <span className="text-[10px] uppercase tracking-[0.2em] font-semibold text-charcoal">FSSAI Certified</span>
+                  <span className="text-[11px] text-charcoal/50 mt-1 font-light">Food Safety Standards Authority of India</span>
+                </div>
+              </Reveal>
+              
+              <Reveal delay={0.15}>
+                <div className="bg-[#FAF6F2] border border-[#2C1E16]/10 rounded-xl p-6 flex flex-col items-center justify-center text-center h-44 shadow-sm hover:border-clay/20 transition-colors">
+                  <div className="w-12 h-12 rounded-full bg-amber-50 flex items-center justify-center mb-3">
+                    <svg className="w-6 h-6 text-amber-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                    </svg>
+                  </div>
+                  <span className="text-[10px] uppercase tracking-[0.2em] font-semibold text-charcoal">ISO 22000</span>
+                  <span className="text-[11px] text-charcoal/50 mt-1 font-light">Food Safety Management Systems Standard</span>
+                </div>
+              </Reveal>
+              
+              <Reveal delay={0.2}>
+                <div className="bg-[#FAF6F2] border border-[#2C1E16]/10 rounded-xl p-6 flex flex-col items-center justify-center text-center h-44 shadow-sm hover:border-clay/20 transition-colors">
+                  <div className="w-12 h-12 rounded-full bg-rose-50 flex items-center justify-center mb-3">
+                    <svg className="w-6 h-6 text-clay" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 3.58-1 8.5C14.7 15.5 11 20 11 20z" />
+                      <path d="M19 2L10 12" />
+                    </svg>
+                  </div>
+                  <span className="text-[10px] uppercase tracking-[0.2em] font-semibold text-charcoal">100% Natural</span>
+                  <span className="text-[11px] text-charcoal/50 mt-1 font-light">Zero Artificial Additives, Fillers, or Preservatives</span>
+                </div>
+              </Reveal>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Contact CTA */}
       <section className="py-24 md:py-32 border-t border-border">
         <div className="container-luxury max-w-3xl text-center">
