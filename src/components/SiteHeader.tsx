@@ -21,59 +21,61 @@ export function SiteHeader() {
   }, []);
 
   return (
-    <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-        scrolled
-          ? "bg-cream/85 backdrop-blur-xl border-b border-border"
-          : "bg-transparent border-b border-transparent"
-      }`}
-    >
-      <div className="container-luxury h-20 flex items-center justify-between">
-        <Link
-          to="/"
-          className="flex items-center"
-        >
-          <img
-            src="/product/logo.png"
-            alt="Dehyug Logo"
-            className="h-16 w-auto object-contain"
-          />
-        </Link>
-
-        <nav className="hidden md:flex gap-10 text-[11px] uppercase tracking-[0.2em] font-medium text-charcoal/80">
-          {nav.map((item) => (
-            <Link
-              key={item.to}
-              to={item.to}
-              activeOptions={{ exact: item.to === "/" }}
-              activeProps={{ className: "text-clay" }}
-              className="hover:text-clay transition-colors"
-            >
-              {item.label}
-            </Link>
-          ))}
-        </nav>
-
-        <div className="flex items-center gap-3">
+    <>
+      <header
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+          scrolled
+            ? "bg-[#FDFCFB]/90 backdrop-blur-xl border-b border-border"
+            : "bg-transparent border-b border-transparent"
+        }`}
+      >
+        <div className="container-luxury h-20 flex items-center justify-between">
           <Link
-            to="/contact"
-            className="hidden md:inline-flex px-5 py-2 border border-charcoal text-[10px] uppercase tracking-[0.2em] text-charcoal hover:bg-charcoal hover:text-cream transition-all"
+            to="/"
+            className="flex items-center"
           >
-            Inquiry
+            <img
+              src="/product/logo.png"
+              alt="Dehyug Logo"
+              className="h-16 w-auto object-contain"
+            />
           </Link>
-          <button
-            aria-label="Menu"
-            onClick={() => setOpen(true)}
-            className="md:hidden p-2 -mr-2 text-charcoal"
-          >
-            <Menu size={22} strokeWidth={1.5} />
-          </button>
+
+          <nav className="hidden md:flex gap-10 text-[11px] uppercase tracking-[0.2em] font-medium text-charcoal/80">
+            {nav.map((item) => (
+              <Link
+                key={item.to}
+                to={item.to}
+                activeOptions={{ exact: item.to === "/" }}
+                activeProps={{ className: "text-clay" }}
+                className="hover:text-clay transition-colors"
+              >
+                {item.label}
+              </Link>
+            ))}
+          </nav>
+
+          <div className="flex items-center gap-3">
+            <Link
+              to="/contact"
+              className="hidden md:inline-flex px-5 py-2 border border-charcoal text-[10px] uppercase tracking-[0.2em] text-charcoal hover:bg-charcoal hover:text-cream transition-all"
+            >
+              Inquiry
+            </Link>
+            <button
+              aria-label="Menu"
+              onClick={() => setOpen(true)}
+              className="md:hidden p-2 -mr-2 text-charcoal"
+            >
+              <Menu size={22} strokeWidth={1.5} />
+            </button>
+          </div>
         </div>
-      </div>
+      </header>
 
       {/* Mobile menu */}
       {open && (
-        <div className="fixed inset-0 z-[60] bg-cream md:hidden flex flex-col">
+        <div className="fixed inset-0 z-[60] bg-[#FDFCFB] md:hidden flex flex-col">
           <div className="container-luxury h-20 flex items-center justify-between">
             <img
               src="/product/logo.png"
@@ -102,6 +104,6 @@ export function SiteHeader() {
           </nav>
         </div>
       )}
-    </header>
+    </>
   );
 }
