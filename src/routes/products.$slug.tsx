@@ -1,6 +1,6 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { useState } from "react";
-import { ArrowLeft, Check } from "lucide-react";
+import { ArrowLeft, Check, MessageCircle } from "lucide-react";
 import { Reveal } from "@/components/Reveal";
 import { getProduct, getRelated, categories } from "@/lib/products";
 
@@ -120,11 +120,20 @@ function ProductDetail() {
             </Reveal>
 
             <Reveal delay={0.3} className="mt-10 flex flex-col sm:flex-row gap-3">
-              <Link
-                to="/contact"
+              <a
+                href={`https://wa.me/917874374333?text=${encodeURIComponent(`Hi Devyug Masala, I would like to inquire about ${product.name}.`)}`}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="flex-1 text-center inline-flex items-center justify-center gap-3 bg-charcoal text-cream px-8 py-5 text-[11px] uppercase tracking-[0.2em] hover:bg-clay transition-colors"
               >
-                Inquire About This Product
+                <MessageCircle size={14} strokeWidth={2} />
+                Inquire via WhatsApp
+              </a>
+              <Link
+                to="/contact"
+                className="flex-1 text-center inline-flex items-center justify-center gap-3 border border-charcoal/20 text-charcoal px-8 py-5 text-[11px] uppercase tracking-[0.2em] hover:bg-charcoal/5 transition-colors"
+              >
+                Other Inquiries
               </Link>
             </Reveal>
           </div>

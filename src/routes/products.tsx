@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useMemo, useState } from "react";
 import { z } from "zod";
-import { Search } from "lucide-react";
+import { Search, MessageCircle } from "lucide-react";
 import { Reveal } from "@/components/Reveal";
 import { categories, products, type CategorySlug } from "@/lib/products";
 
@@ -111,9 +111,21 @@ function ProductsPage() {
                       <h3 className="text-base md:text-lg font-medium uppercase tracking-[0.12em] mb-2 text-charcoal group-hover:text-clay transition-colors font-display">
                         {p.name}
                       </h3>
-                      <p className="text-charcoal/65 text-xs font-light leading-relaxed line-clamp-2 min-h-[40px]">
+                      <p className="text-charcoal/65 text-xs font-light leading-relaxed line-clamp-2 min-h-[40px] mb-4">
                         {p.subtitle}
                       </p>
+                      <button
+                        onClick={(e) => {
+                          e.preventDefault();
+                          e.stopPropagation();
+                          const message = encodeURIComponent(`Hi Devyug Masala, I would like to inquire about ${p.name}.`);
+                          window.open(`https://wa.me/917874374333?text=${message}`, "_blank");
+                        }}
+                        className="w-full flex items-center justify-center gap-2 py-2.5 px-4 border border-charcoal/10 hover:border-charcoal/40 hover:bg-charcoal/5 transition-all duration-300 text-[10px] font-semibold uppercase tracking-[0.15em] text-charcoal rounded-lg"
+                      >
+                        <MessageCircle size={13} strokeWidth={2} className="text-emerald-600" />
+                        Inquire via WhatsApp
+                      </button>
                     </div>
                   </Link>
                 </Reveal>
