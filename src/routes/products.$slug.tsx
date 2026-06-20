@@ -2,7 +2,7 @@ import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { useState } from "react";
 import { ArrowLeft, Check, MessageCircle } from "lucide-react";
 import { Reveal } from "@/components/Reveal";
-import { getProduct, getRelated, categories } from "@/lib/products";
+import { getProduct, getRelated, categories, isPacketProduct, isLandscapeFallback } from "@/lib/products";
 
 export const Route = createFileRoute("/products/$slug")({
   loader: ({ params }) => {
@@ -52,23 +52,23 @@ function ProductDetail() {
         <div className="container-luxury grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
           {/* Gallery */}
           <div className="lg:col-span-7">
-            <Reveal className="aspect-[4/3] bg-stone-warm mb-4 overflow-hidden">
+            <Reveal className={`aspect-square bg-[#FAF6F2] border border-charcoal/5 mb-4 flex items-center justify-center rounded-lg overflow-hidden ${isPacketProduct(product.slug) ? 'p-10' : 'p-0'}`}>
               <img
                 src={gallery[active]}
                 alt={product.name}
-                className="w-full h-full object-cover"
+                className={`transition-all duration-300 ${isPacketProduct(product.slug) ? 'max-h-full max-w-full object-contain' : `w-full h-full object-cover ${isLandscapeFallback(product.slug) ? 'object-left' : ''}`}`}
               />
             </Reveal>
             <div className="grid grid-cols-3 gap-3">
               {gallery.map((g, i) => (
                 <button
-                  key={i}
-                  onClick={() => setActive(i)}
-                  className={`aspect-[4/3] bg-stone-warm overflow-hidden transition-all ${
-                    i === active ? "ring-2 ring-clay ring-offset-4 ring-offset-cream" : "opacity-60 hover:opacity-100"
-                  }`}
+                   key={i}
+                   onClick={() => setActive(i)}
+                   className={`aspect-square bg-[#FAF6F2] border border-charcoal/5 flex items-center justify-center transition-all rounded-md overflow-hidden ${isPacketProduct(product.slug) ? 'p-4' : 'p-0'} ${
+                     i === active ? "ring-2 ring-clay ring-offset-4 ring-offset-[#F7F2EB]" : "opacity-60 hover:opacity-100"
+                   }`}
                 >
-                  <img src={g} alt="" loading="lazy" className="w-full h-full object-cover" />
+                  <img src={g} alt="" loading="lazy" className={`${isPacketProduct(product.slug) ? 'max-h-full max-w-full object-contain' : `w-full h-full object-cover ${isLandscapeFallback(product.slug) ? 'object-left' : ''}`}`} />
                 </button>
               ))}
             </div>
@@ -175,19 +175,19 @@ function ProductDetail() {
             <div className="grid grid-cols-2 md:grid-cols-3 gap-6 md:gap-8">
               {related.map((p, i) => (
                 <Reveal key={p.slug} delay={i * 0.08}>
-                  <Link to="/products/$slug" params={{ slug: p.slug }} className="group block">
-                    <div className="aspect-[4/3] bg-cream mb-5 overflow-hidden">
+                  <Link to="/products/$slug" params={{ slug: p.slug }} className="group block bg-transparent transition-all duration-500 hover:-translate-y-1">
+                    <div className={`aspect-square bg-cream/40 mb-5 relative flex items-center justify-center transition-colors duration-500 group-hover:bg-cream rounded-md border border-charcoal/5 overflow-hidden ${isPacketProduct(p.slug) ? 'p-6' : 'p-0'}`}>
                       <img
                         src={p.image}
                         alt={p.name}
                         loading="lazy"
-                        className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-110"
+                        className={`transition-transform duration-700 ease-out group-hover:scale-105 ${isPacketProduct(p.slug) ? 'max-h-full max-w-full object-contain' : `w-full h-full object-cover ${isLandscapeFallback(p.slug) ? 'object-left' : ''}`}`}
                       />
                     </div>
-                    <h4 className="text-sm uppercase tracking-[0.15em] text-charcoal group-hover:text-clay transition-colors">
+                    <h4 className="text-sm font-semibold uppercase tracking-[0.12em] text-charcoal group-hover:text-clay transition-colors font-display">
                       {p.name}
                     </h4>
-                    <p className="text-[11px] text-charcoal/50 mt-1">{p.subtitle}</p>
+                    <p className="text-[11px] text-charcoal/60 font-light mt-1 leading-relaxed line-clamp-1">{p.subtitle}</p>
                   </Link>
                 </Reveal>
               ))}

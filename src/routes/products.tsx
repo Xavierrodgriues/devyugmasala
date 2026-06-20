@@ -3,7 +3,7 @@ import { useMemo, useState } from "react";
 import { z } from "zod";
 import { Search, MessageCircle } from "lucide-react";
 import { Reveal } from "@/components/Reveal";
-import { categories, products, type CategorySlug } from "@/lib/products";
+import { categories, products, isPacketProduct, isLandscapeFallback, type CategorySlug } from "@/lib/products";
 
 const searchSchema = z.object({
   category: z.enum(["pure-spices", "blended-spices", "seasoning"]).optional(),
@@ -96,27 +96,27 @@ function ProductsPage() {
                   <Link
                     to="/products/$slug"
                     params={{ slug: p.slug }}
-                    className="group flex flex-col h-full bg-cream border border-border/40 rounded-xl p-5 shadow-sm hover:shadow-luxury hover:border-clay/30 transition-all duration-500 hover:-translate-y-1"
+                    className="group flex flex-col h-full bg-transparent transition-all duration-500 hover:-translate-y-1"
                   >
-                    <div className="aspect-[4/3] bg-stone-warm mb-6 overflow-hidden relative rounded-lg shrink-0">
+                    <div className={`aspect-square bg-[#FAF6F2] hover:bg-[#F3EBE1] border border-charcoal/5 mb-5 relative flex items-center justify-center rounded-lg transition-colors duration-500 overflow-hidden ${isPacketProduct(p.slug) ? 'p-10' : 'p-0'}`}>
                       <img
                         src={p.image}
                         alt={p.name}
                         loading="lazy"
-                        className="w-full h-full object-cover transition-transform duration-1000 ease-out group-hover:scale-[1.03]"
+                        className={`transition-transform duration-700 ease-out group-hover:scale-105 ${isPacketProduct(p.slug) ? 'max-h-full max-w-full object-contain' : `w-full h-full object-cover ${isLandscapeFallback(p.slug) ? 'object-left' : ''}`}`}
                       />
                       <div className="absolute top-4 left-4">
-                        <span className="px-3 py-1 bg-cream/90 backdrop-blur-sm text-[9px] uppercase tracking-[0.22em] font-semibold text-charcoal shadow-sm rounded-md">
+                        <span className="px-2.5 py-1 bg-cream/95 backdrop-blur-sm text-[8px] uppercase tracking-[0.2em] font-semibold text-charcoal shadow-sm rounded">
                           {categoryShort(p.category)}
                         </span>
                       </div>
                     </div>
                     <div className="px-1 flex flex-col flex-grow justify-between">
-                      <div className="mb-4">
-                        <h3 className="text-base md:text-lg font-medium uppercase tracking-[0.12em] mb-2 text-charcoal group-hover:text-clay transition-colors font-display">
+                      <div className="mb-3">
+                        <h3 className="text-sm md:text-base font-semibold uppercase tracking-[0.15em] mb-1.5 text-charcoal group-hover:text-clay transition-colors font-display">
                           {p.name}
                         </h3>
-                        <p className="text-charcoal/65 text-xs font-light leading-relaxed line-clamp-2 min-h-[40px]">
+                        <p className="text-charcoal/60 text-xs font-light leading-relaxed line-clamp-2 min-h-[36px]">
                           {p.subtitle}
                         </p>
                       </div>
@@ -124,38 +124,36 @@ function ProductsPage() {
                       <div>
                         {/* Specifications */}
                         {p.category !== "seasoning" && (
-                          <div className="mb-5">
-                            <span className="text-[9px] uppercase tracking-[0.15em] text-charcoal/40 block mb-2 font-semibold">
-                              Available Sizes:
+                          <div className="mb-4">
+                            <span className="text-[9px] uppercase tracking-[0.15em] text-charcoal/40 block mb-1 font-semibold">
+                              Sizes:
                             </span>
-                            <div className="flex flex-wrap gap-1.5">
+                            <p className="text-[10px] text-charcoal/60 font-light tracking-wide">
                               {(p.category === "pure-spices"
-                                ? ["100gm", "200gm", "500gm", "1kg"]
-                                : ["50gm", "100gm"]
-                              ).map((size) => (
-                                <span
-                                  key={size}
-                                  className="px-2 py-0.5 bg-stone-warm border border-charcoal/5 text-[9px] tracking-wider text-charcoal/70 rounded-md font-semibold"
-                                >
-                                  {size}
-                                </span>
-                              ))}
-                            </div>
+                                ? ["100g", "200g", "500g", "1kg"]
+                                : ["50g", "100g"]
+                              ).join(" · ")}
+                            </p>
                           </div>
                         )}
 
-                        <button
-                          onClick={(e) => {
-                            e.preventDefault();
-                            e.stopPropagation();
-                            const message = encodeURIComponent(`Hi Devyug Masala, I would like to inquire about ${p.name}.`);
-                            window.open(`https://wa.me/917874374333?text=${message}`, "_blank");
-                          }}
-                          className="w-full flex items-center justify-center gap-2 py-2.5 px-4 border border-charcoal/10 hover:border-charcoal/40 hover:bg-charcoal/5 transition-all duration-300 text-[10px] font-semibold uppercase tracking-[0.15em] text-charcoal rounded-lg"
-                        >
-                          <MessageCircle size={13} strokeWidth={2} className="text-emerald-600" />
-                          Inquire via WhatsApp
-                        </button>
+                        <div className="flex items-center justify-between border-t border-charcoal/10 pt-4 mt-2">
+                          <span className="text-[9px] uppercase tracking-[0.2em] font-bold text-clay group-hover:underline transition-all">
+                            Explore Details →
+                          </span>
+                          <button
+                            onClick={(e) => {
+                              e.preventDefault();
+                              e.stopPropagation();
+                              const message = encodeURIComponent(`Hi Devyug Masala, I would like to inquire about ${p.name}.`);
+                              window.open(`https://wa.me/917874374333?text=${message}`, "_blank");
+                            }}
+                            className="flex items-center gap-1 text-[9px] uppercase tracking-[0.15em] text-charcoal/60 hover:text-charcoal transition-colors font-semibold"
+                          >
+                            <MessageCircle size={11} strokeWidth={2} className="text-emerald-600" />
+                            WhatsApp
+                          </button>
+                        </div>
                       </div>
                     </div>
                   </Link>

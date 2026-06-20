@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { HeroCarousel } from "@/components/HeroCarousel";
 import { Reveal } from "@/components/Reveal";
-import { categories, products } from "@/lib/products";
+import { categories, products, isPacketProduct, isLandscapeFallback } from "@/lib/products";
 import heritage from "@/assets/heritage-1960.jpg";
 import manufacturing from "@/assets/manufacturing.jpg";
 import heroPure from "@/assets/hero-pure-spices.jpg";
@@ -178,28 +178,39 @@ function HomePage() {
                 <Link
                   to="/products/$slug"
                   params={{ slug: p.slug }}
-                  className="group block bg-cream border border-border/40 rounded-xl p-5 shadow-sm hover:shadow-luxury hover:border-clay/30 transition-all duration-500 hover:-translate-y-1"
+                  className="group block bg-transparent transition-all duration-500 hover:-translate-y-1"
                 >
-                  <div className="aspect-[4/3] bg-stone-warm mb-6 overflow-hidden relative rounded-lg">
+                  <div className={`aspect-square bg-[#FAF6F2] hover:bg-[#F3EBE1] border border-charcoal/5 mb-5 relative flex items-center justify-center rounded-lg transition-colors duration-500 overflow-hidden ${isPacketProduct(p.slug) ? 'p-8' : 'p-0'}`}>
                     <img
                       src={p.image}
                       alt={p.name}
                       loading="lazy"
-                      className="w-full h-full object-cover transition-transform duration-1000 ease-out group-hover:scale-[1.03]"
+                      className={`transition-transform duration-700 ease-out group-hover:scale-105 ${isPacketProduct(p.slug) ? 'max-h-full max-w-full object-contain' : `w-full h-full object-cover ${isLandscapeFallback(p.slug) ? 'object-left' : ''}`}`}
                     />
                     <div className="absolute top-4 left-4">
-                      <span className="px-3 py-1 bg-cream/90 backdrop-blur-sm text-[9px] uppercase tracking-[0.22em] font-semibold text-charcoal shadow-sm rounded-md">
+                      <span className="px-2.5 py-1 bg-cream/95 backdrop-blur-sm text-[8px] uppercase tracking-[0.2em] font-semibold text-charcoal shadow-sm rounded">
                         {categoryLabel(p.category)}
                       </span>
                     </div>
                   </div>
-                  <div className="px-1">
-                    <h4 className="text-base md:text-lg font-medium uppercase tracking-[0.12em] mb-2 text-charcoal group-hover:text-clay transition-colors font-display">
-                      {p.name}
-                    </h4>
-                    <p className="text-charcoal/65 text-xs font-light leading-relaxed line-clamp-2 min-h-[40px]">
-                      {p.subtitle}
-                    </p>
+                  <div className="px-1 flex flex-col justify-between">
+                    <div className="mb-2">
+                      <h4 className="text-sm md:text-base font-semibold uppercase tracking-[0.15em] mb-1.5 text-charcoal group-hover:text-clay transition-colors font-display">
+                        {p.name}
+                      </h4>
+                      <p className="text-charcoal/60 text-xs font-light leading-relaxed line-clamp-2 min-h-[36px]">
+                        {p.subtitle}
+                      </p>
+                    </div>
+
+                    <div className="flex items-center justify-between border-t border-charcoal/10 pt-4 mt-2">
+                      <span className="text-[9px] uppercase tracking-[0.2em] font-bold text-clay group-hover:underline transition-all">
+                        Explore Details →
+                      </span>
+                      <span className="text-[9px] uppercase tracking-[0.15em] text-charcoal/40 font-semibold">
+                        View Item
+                      </span>
+                    </div>
                   </div>
                 </Link>
               </Reveal>
@@ -236,7 +247,6 @@ function HomePage() {
                 {[
                   "Cold-grinding process",
                   "ISO 22000 certified",
-                  "Zero human-touch packaging",
                   "Direct-to-farmer sourcing",
                 ].map((feat) => (
                   <li key={feat} className="flex items-center gap-4 text-xs uppercase tracking-[0.2em] text-charcoal/80">
