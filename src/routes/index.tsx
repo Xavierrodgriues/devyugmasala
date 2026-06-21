@@ -4,14 +4,20 @@ import { Reveal } from "@/components/Reveal";
 import { categories, products, isPacketProduct, isLandscapeFallback } from "@/lib/products";
 import heritage from "@/assets/heritage-1960.jpg";
 import manufacturing from "@/assets/manufacturing.jpg";
-import heroPure from "@/assets/hero-pure-spices.jpg";
-import heroBlended from "@/assets/hero-blended-spices.jpg";
-import heroSeasoning from "@/assets/hero-seasoning.jpg";
-
-const categoryHero: Record<string, string> = {
-  "pure-spices": heroPure,
-  "blended-spices": heroBlended,
-  seasoning: heroSeasoning,
+// Category product + ingredient images for the hover effect
+const categoryData: Record<string, { packet: string; ingredients: string }> = {
+  "pure-spices": {
+    packet: "/product/redchilli.png",
+    ingredients: "/hero-slide-chilli.png",
+  },
+  "blended-spices": {
+    packet: "/product/biryanimasala.png",
+    ingredients: "/hero-slide-biryani.png",
+  },
+  seasoning: {
+    packet: "/product/garlicpowder.png",
+    ingredients: "/hero-slide-turmeric.png",
+  },
 };
 
 export const Route = createFileRoute("/")({
@@ -70,20 +76,13 @@ function HomePage() {
                   search={{ category: cat.slug }}
                   className="group block"
                 >
-                  <div className="relative overflow-hidden aspect-[3/4] mb-6 bg-stone-warm">
+                  <div className="relative overflow-hidden aspect-[3/4] mb-6">
                     <img
-                      src={categoryHero[cat.slug]}
+                      src={categoryData[cat.slug].packet}
                       alt={cat.name}
                       loading="lazy"
-                      className="w-full h-full object-cover transition-transform duration-1000 ease-out group-hover:scale-105"
+                      className="w-full h-full object-cover"
                     />
-                    <div className="absolute inset-0 bg-charcoal/10 group-hover:bg-transparent transition-colors duration-500" />
-                    <div className="absolute bottom-6 left-6 right-6 flex items-center justify-between text-cream">
-                      <span className="text-[10px] uppercase tracking-[0.3em]">0{i + 1}</span>
-                      <span className="hidden md:inline text-[10px] uppercase tracking-[0.3em] opacity-0 group-hover:opacity-100 transition-opacity">
-                        Explore →
-                      </span>
-                    </div>
                   </div>
                   <h3 className="font-display text-2xl md:text-3xl mb-2 text-charcoal">{cat.name}</h3>
                   <p className="text-sm text-charcoal/60 font-light leading-relaxed">{cat.description}</p>
