@@ -15,7 +15,7 @@ const categoryData: Record<string, { packet: string; ingredients: string }> = {
     ingredients: "/hero-slide-biryani.png",
   },
   seasoning: {
-    packet: "/product/garlicpowder.png",
+    packet: "/product/chilliflakes.jpeg",
     ingredients: "/hero-slide-turmeric.png",
   },
 };
